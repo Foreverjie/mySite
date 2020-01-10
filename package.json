@@ -7,8 +7,8 @@
     "flush": "pipenv run python ./manage.py flush --no-input",
     "e2e": "cypress open --project ./frontend/",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development ./frontend/src/index.js --output ./frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./frontend/src/index.js --output ./frontend/static/frontend/main.js"
+    "dev": "webpack --mode development --watch ./frontend/src/App.js --output ./frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./frontend/src/App.js --output ./frontend/static/frontend/main.js"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +26,10 @@
     "weak-key": "^1.0.1",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "antd": "^3.26.6",
+    "css-loader": "^3.4.1",
+    "style-loader": "^1.1.2"
   }
 }
