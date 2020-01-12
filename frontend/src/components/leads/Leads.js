@@ -25,15 +25,27 @@ export class Leads extends Component {
           <Column
             title="Action"
             key="action"
-            render={(text, lead) => (
-              <span>
-                <a>Invite {lead.name}</a>
-                <Divider type="vertical" />
-                <a onClick={this.props.deleteLead.bind(this, lead.id)}>
-                  Delete
-                </a>
-              </span>
-            )}
+            render={(text, lead) => {
+              const menu = (
+                <Menu>
+                  <Menu.Item key="1">
+                    <a>Invite {lead.name}</a>
+                  </Menu.Item>
+                  <Menu.Item key="2">
+                    <a onClick={this.props.deleteLead.bind(this, lead.id)}>
+                      Delete
+                    </a>
+                  </Menu.Item>
+                </Menu>
+              )
+              return (
+                <Dropdown overlay={menu}>
+                  <Button>
+                    Action <Icon type="down" />
+                  </Button>
+                </Dropdown>
+              )
+            }}
           />
         </Table>
       </div>
