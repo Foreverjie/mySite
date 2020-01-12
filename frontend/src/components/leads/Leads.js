@@ -4,55 +4,7 @@ import PropTypes, { func } from 'prop-types'
 import { getLeads, deleteLead } from '../../actions/leads'
 import { Table, Divider, Menu, Dropdown, Button, Icon } from 'antd'
 
-function onActioinMenuClick(e) {
-  console.log(e)
-}
-
-const columns = [
-  {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name'
-  },
-  {
-    title: '邮箱',
-    dataIndex: 'email',
-    key: 'email'
-  },
-  {
-    title: '信息',
-    dataIndex: 'message',
-    key: 'message'
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: function(text, lead) {
-      console.log(this)
-      const actionMenu = (
-        <Menu onClick={onActioinMenuClick}>
-          <Menu.Item key="0">
-            <a href="#">{lead.name}</a>
-          </Menu.Item>
-          <Menu.Item key="1">
-            <a href="#">2nd menu item</a>
-          </Menu.Item>
-          <Menu.Divider />
-          <Menu.Item key="3" onClick={onActioinMenuClick}>
-            Delete
-          </Menu.Item>
-        </Menu>
-      )
-      return (
-        <Dropdown overlay={actionMenu} trigger={['click']}>
-          <Button>
-            Action <Icon type="down" />
-          </Button>
-        </Dropdown>
-      )
-    }
-  }
-]
+const { Column, ColumnGroup } = Table
 
 export class Leads extends Component {
   static propTypes = {
@@ -66,18 +18,24 @@ export class Leads extends Component {
   render() {
     return (
       <div>
-        <Table
-          rowKey={lead => lead.id}
-          dataSource={this.props.leads}
-          columns={columns}
-          onRow={lead => {
-            return {
-              onClick: event => {
-                console.log(event)
-              }
-            }
-          }}
-        />
+        <Table dataSource={this.props.leads} rowKey={lead => lead.id}>
+          <Column title="姓名" dataIndex="name" key="name" />
+          <Column title="邮箱" dataIndex="email" key="email" />
+          <Column title="信息" dataIndex="message" key="message" />
+          <Column
+            title="Action"
+            key="action"
+            render={(text, lead) => (
+              <span>
+                <a>Invite {lead.name}</a>
+                <Divider type="vertical" />
+                <a onClick={this.props.deleteLead.bind(this, lead.id)}>
+                  Delete
+                </a>
+              </span>
+            )}
+          />
+        </Table>
       </div>
     )
   }
