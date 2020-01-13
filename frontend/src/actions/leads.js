@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_LEADS, DELETE_LEAD } from './types'
+import { GET_LEADS, DELETE_LEAD, CREATE_LEAD } from './types'
 
 // Get Leads
 export const getLeads = () => dispatch => {
@@ -29,12 +29,12 @@ export const deleteLead = id => dispatch => {
 }
 
 // Create Lead
-export const createLead = data => dispatch => {
+export const createLead = lead => dispatch => {
   axios
-    .post(`/api/leads/`, data)
+    .post(`/api/leads/`, lead)
     .then(res => {
       dispatch({
-        type: DELETE_LEAD,
+        type: CREATE_LEAD,
         payload: res.data
       })
     })

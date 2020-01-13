@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes, { func } from 'prop-types'
+import PropTypes from 'prop-types'
 import { getLeads, deleteLead } from '../../actions/leads'
 import { Table, Divider, Menu, Dropdown, Button, Icon } from 'antd'
 

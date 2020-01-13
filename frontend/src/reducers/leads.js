@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
     case CREATE_LEAD:
       return {
         ...state,
-        leads: state.leads.push(action.payload)
+        leads: [...state.leads, action.payload]
       }
     default:
       return state
