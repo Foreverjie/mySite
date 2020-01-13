@@ -16,7 +16,12 @@ class App extends Component {
       <Provider store={store}>
         <Layout>
           <Header
-            style={{ position: 'fixed', zIndex: 1, width: '100%', padding: 0 }}
+            style={{
+              position: 'fixed',
+              zIndex: 1,
+              width: '100%',
+              padding: 0
+            }}
           >
             <div className="logo" />
             <Menu
