@@ -15,7 +15,7 @@ export const getLeads = () => dispatch => {
     .catch(err => console.log(err))
 }
 
-// Delete Leads
+// Delete Lead
 export const deleteLead = id => dispatch => {
   axios
     .delete(`/api/leads/${id}/`)
@@ -23,6 +23,19 @@ export const deleteLead = id => dispatch => {
       dispatch({
         type: DELETE_LEAD,
         payload: id
+      })
+    })
+    .catch(err => console.log(err))
+}
+
+// Create Lead
+export const createLead = data => dispatch => {
+  axios
+    .post(`/api/leads/`, data)
+    .then(res => {
+      dispatch({
+        type: DELETE_LEAD,
+        payload: res.data
       })
     })
     .catch(err => console.log(err))

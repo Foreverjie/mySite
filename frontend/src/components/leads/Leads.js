@@ -31,6 +31,7 @@ export class Leads extends Component {
                   <Menu.Item key="1">
                     <a>Invite {lead.name}</a>
                   </Menu.Item>
+                  <Menu.Divider />
                   <Menu.Item key="2">
                     <a onClick={this.props.deleteLead.bind(this, lead.id)}>
                       Delete
@@ -39,7 +40,7 @@ export class Leads extends Component {
                 </Menu>
               )
               return (
-                <Dropdown overlay={menu}>
+                <Dropdown overlay={menu} trigger={['click']}>
                   <Button>
                     Action <Icon type="down" />
                   </Button>
