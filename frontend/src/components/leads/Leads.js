@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { getLeads, deleteLead } from '../../actions/leads'
-import { Table, Divider, Menu, Dropdown, Button, Icon } from 'antd'
+import { Table, Divider, Menu, Dropdown, Button, Icon, message } from 'antd'
 
 const { Column, ColumnGroup } = Table
 
-export class Leads extends Component {
+class Leads extends Component {
   static propTypes = {
     leads: PropTypes.array.isRequired
   }
