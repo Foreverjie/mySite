@@ -30,6 +30,11 @@ export const deleteLead = id => dispatch => {
         type: DELETE_LEAD,
         payload: id
       })
+      dispatch({
+        type: GET_SUCCESS,
+        payload: '删除成功',
+        success: true
+      })
     })
     .catch(err => console.log(err))
 }
@@ -45,18 +50,14 @@ export const createLead = lead => dispatch => {
       })
       dispatch({
         type: GET_SUCCESS,
-        payload: '创建成功.',
+        payload: '创建成功',
         success: true
       })
     })
     .catch(err => {
-      const errors = {
-        msg: err.response.data,
-        status: err.response.status
-      }
       dispatch({
         type: GET_ERRORS,
-        payload: errors,
+        payload: err.response.data,
         success: false
       })
     })
