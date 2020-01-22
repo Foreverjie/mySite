@@ -18,7 +18,13 @@ export const getLeads = () => dispatch => {
         payload: res.data
       })
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+        success: false
+      })
+    })
 }
 
 // Delete Lead
@@ -36,7 +42,13 @@ export const deleteLead = id => dispatch => {
         success: true
       })
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+        success: false
+      })
+    })
 }
 
 // Create Lead

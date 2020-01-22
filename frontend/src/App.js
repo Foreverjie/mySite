@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom'
 import './App.css'
 
-import { Layout, Menu, Breadcrumb } from 'antd'
+import { Layout, Menu } from 'antd'
 import Dashboard from './components/leads/Dashboard'
 import Article from './components/articles/Article'
+import Login from './components/accounts/Login'
+import Register from './components/accounts/Register'
+import PrivateRoute from './components/common/PrivateRoute'
 
 import { Provider } from 'react-redux'
 import store from './store'
@@ -33,34 +42,45 @@ class App extends Component {
                 defaultSelectedKeys={['1']}
                 style={{ lineHeight: '64px' }}
               >
-                <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
-                <Menu.Item key="2"><Link to="/article">Article</Link></Menu.Item>
-                <Menu.Item key="3"><Link to="/explore">Explore</Link></Menu.Item>
+                <Menu.Item key="1">
+                  <Link to="/">Home</Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link to="/article">Article</Link>
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <Link to="/explore">Explore</Link>
+                </Menu.Item>
+                <Menu.Item key="4" style={{ float: 'right' }}>
+                  <Link to="/login">Login</Link>
+                </Menu.Item>
+                <Menu.Item key="5" style={{ float: 'right' }}>
+                  <Link to="/register">Register</Link>
+                </Menu.Item>
               </Menu>
             </Header>
             <Content style={{ padding: '0 50px', marginTop: 80 }}>
-              {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>App11</Breadcrumb.Item>
-              </Breadcrumb> */}
               <div
-                  style={{
-                    background: '#fff',
-                    padding: 24,
-                    minHeight: 380
-                  }}
-                >
-                  <Switch>
-                    <Route path="/article">
-                      <Article />
-                    </Route>
-                    <Route path="/explore">
-                      <Dashboard />
-                    </Route>
-                    <Route path="/">
-                      <Dashboard />
-                    </Route>
+                style={{
+                  background: '#fff',
+                  padding: 24,
+                  minHeight: 380
+                }}
+              >
+                <Switch>
+                  <Route path="/article">
+                    <Article />
+                  </Route>
+                  <Route path="/explore">
+                    <Dashboard />
+                  </Route>
+                  <Route path="/login">
+                    <Login />
+                  </Route>
+                  <Route path="/register">
+                    <Register />
+                  </Route>
+                  <PrivateRoute path="/" component={Dashboard} />
                 </Switch>
               </div>
             </Content>
