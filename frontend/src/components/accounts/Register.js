@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { register } from '../../actions/auth'
 
 export class Register extends Component {
   state = {
@@ -8,6 +11,11 @@ export class Register extends Component {
     email: '',
     password: '',
     password2: ''
+  }
+
+  static propTypes = {
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
   }
 
   handleChange = event => {
@@ -18,13 +26,20 @@ export class Register extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-    console.log('submit')
+    const { username, email, password, password2 } = this.state
+    const newUser = {
+      username,
+      email,
+      password,
+      password2
+    }
+    this.props.register(newUser)
   }
 
   render() {
     const { username, email, password, password2 } = this.state
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
+      <Form onSubmit={this.onSubmit} className="login-form">
         <Form.Item>
           <Input
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -78,4 +93,8 @@ export class Register extends Component {
   }
 }
 
-export default Register
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { register })(Register)

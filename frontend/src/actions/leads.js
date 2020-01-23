@@ -7,11 +7,15 @@ import {
   GET_ERRORS,
   GET_SUCCESS
 } from './types'
+import { returnErrors } from './message'
+import { tokenConfig } from './auth'
 
 // Get Leads
-export const getLeads = () => dispatch => {
+export const getLeads = () => (dispatch, getState) => {
+  const config = tokenConfig(getState)
+
   axios
-    .get('/api/leads/')
+    .get('/api/leads/', config)
     .then(res => {
       dispatch({
         type: GET_LEADS,
@@ -19,18 +23,16 @@ export const getLeads = () => dispatch => {
       })
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-        success: false
-      })
+      dispatch(returnErrors(err))
     })
 }
 
 // Delete Lead
-export const deleteLead = id => dispatch => {
+export const deleteLead = id => (dispatch, getState) => {
+  const config = tokenConfig(getState)
+
   axios
-    .delete(`/api/leads/${id}/`)
+    .delete(`/api/leads/${id}/`, config)
     .then(res => {
       dispatch({
         type: DELETE_LEAD,
@@ -52,9 +54,11 @@ export const deleteLead = id => dispatch => {
 }
 
 // Create Lead
-export const createLead = lead => dispatch => {
+export const createLead = lead => (dispatch, getState) => {
+  const config = tokenConfig(getState)
+
   axios
-    .post(`/api/leads/`, lead)
+    .post(`/api/leads/`, lead, config)
     .then(res => {
       dispatch({
         type: CREATE_LEAD,

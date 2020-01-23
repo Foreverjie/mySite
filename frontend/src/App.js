@@ -9,56 +9,31 @@ import {
 } from 'react-router-dom'
 import './App.css'
 
-import { Layout, Menu } from 'antd'
+import { Layout } from 'antd'
 import Dashboard from './components/leads/Dashboard'
 import Article from './components/articles/Article'
 import Login from './components/accounts/Login'
 import Register from './components/accounts/Register'
 import PrivateRoute from './components/common/PrivateRoute'
+import { loadUser } from './actions/auth'
+import MyHeader from './components/layout/MyHeader'
 
 import { Provider } from 'react-redux'
 import store from './store'
 
-const { Header, Content, Footer } = Layout
+const { Content, Footer } = Layout
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser())
+  }
+
   render() {
     return (
       <Provider store={store}>
         <Router>
           <Layout>
-            <Header
-              style={{
-                position: 'fixed',
-                zIndex: 1,
-                width: '100%',
-                padding: 0
-              }}
-            >
-              <div className="logo" />
-              <Menu
-                theme="white"
-                mode="horizontal"
-                defaultSelectedKeys={['1']}
-                style={{ lineHeight: '64px' }}
-              >
-                <Menu.Item key="1">
-                  <Link to="/">Home</Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <Link to="/article">Article</Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Link to="/explore">Explore</Link>
-                </Menu.Item>
-                <Menu.Item key="4" style={{ float: 'right' }}>
-                  <Link to="/login">Login</Link>
-                </Menu.Item>
-                <Menu.Item key="5" style={{ float: 'right' }}>
-                  <Link to="/register">Register</Link>
-                </Menu.Item>
-              </Menu>
-            </Header>
+            <MyHeader />
             <Content style={{ padding: '0 50px', marginTop: 80 }}>
               <div
                 style={{
@@ -81,6 +56,7 @@ class App extends Component {
                     <Register />
                   </Route>
                   <PrivateRoute path="/" component={Dashboard} />
+                  {/* <Route path="/" component={Dashboard} /> */}
                 </Switch>
               </div>
             </Content>
