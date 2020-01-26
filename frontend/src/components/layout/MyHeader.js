@@ -18,15 +18,10 @@ export class MyHeader extends Component {
 
     const guestLink = (
       <Col span={6}>
-        <Button
-          type="primary"
-          style={{ marginRight: '16px' }}
-          size="default"
-          onClick={this.props.logout}
-        >
+        <Button type="primary" style={{ marginRight: '16px' }} size="default">
           <Link to="/login">Login</Link>
         </Button>
-        <Button type="default" size="default" onClick={this.props.logout}>
+        <Button type="default" size="default">
           <Link to="/register">Register</Link>
         </Button>
       </Col>

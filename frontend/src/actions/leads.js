@@ -71,10 +71,6 @@ export const createLead = lead => (dispatch, getState) => {
       })
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-        success: false
-      })
+      dispatch(returnErrors(err))
     })
 }
