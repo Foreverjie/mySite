@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Button } from 'antd'
+import { Layout, Menu, Button, Row, Col, Avatar } from 'antd'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -17,55 +17,37 @@ export class MyHeader extends Component {
     const { isAuthenticated, user } = this.props.auth
 
     const guestLink = (
-      <Menu
-        theme="white"
-        mode="horizontal"
-        defaultSelectedKeys={['1']}
-        style={{ lineHeight: '64px' }}
-      >
-        <Menu.Item key="1">
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/article">Article</Link>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Link to="/explore">Explore</Link>
-        </Menu.Item>
-        <Menu.Item key="4" style={{ float: 'right' }}>
+      <Col span={6}>
+        <Button
+          type="primary"
+          style={{ marginRight: '16px' }}
+          size="default"
+          onClick={this.props.logout}
+        >
           <Link to="/login">Login</Link>
-        </Menu.Item>
-        <Menu.Item key="5" style={{ float: 'right' }}>
+        </Button>
+        <Button type="default" size="default" onClick={this.props.logout}>
           <Link to="/register">Register</Link>
-        </Menu.Item>
-      </Menu>
+        </Button>
+      </Col>
     )
 
     const userLink = (
-      <Menu
-        theme="white"
-        mode="horizontal"
-        defaultSelectedKeys={['1']}
-        style={{ lineHeight: '64px' }}
-      >
-        <Menu.Item key="1">
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/article">Article</Link>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Link to="/explore">Explore</Link>
-        </Menu.Item>
-        <Menu.Item key="4" style={{ float: 'right' }}>
-          <span>{user ? `${user.username}` : ''}</span>
-        </Menu.Item>
-        <Menu.Item key="5" style={{ float: 'right' }}>
-          <Button type="link" size="small" onClick={this.props.logout}>
-            Logout
-          </Button>
-        </Menu.Item>
-      </Menu>
+      <Col span={6}>
+        <Avatar
+          style={{
+            backgroundColor: 'lightblue',
+            verticalAlign: 'middle',
+            marginRight: '16px'
+          }}
+          size="large"
+        >
+          {user ? `${user.username}` : ''}
+        </Avatar>
+        <Button type="danger" size="small" onClick={this.props.logout}>
+          Logout
+        </Button>
+      </Col>
     )
 
     return (
@@ -74,11 +56,34 @@ export class MyHeader extends Component {
           position: 'fixed',
           zIndex: 1,
           width: '100%',
-          padding: 0
+          padding: 0,
+          backgroundColor: 'white'
         }}
       >
-        <div className="logo" />
-        {isAuthenticated ? userLink : guestLink}
+        {/* {isAuthenticated ? userLink : guestLink} */}
+        <Row>
+          <Col span={6}></Col>
+          <Col span={6}>
+            <Menu
+              theme="white"
+              mode="horizontal"
+              defaultSelectedKeys={['1']}
+              style={{ lineHeight: '64px' }}
+            >
+              <Menu.Item key="1">
+                <Link to="/">Home</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/article">Article</Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/explore">Explore</Link>
+              </Menu.Item>
+            </Menu>
+          </Col>
+          <Col span={6}></Col>
+          {isAuthenticated ? userLink : guestLink}
+        </Row>
       </Header>
     )
   }

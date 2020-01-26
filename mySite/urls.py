@@ -23,6 +23,6 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
 
-    # 全局路由匹配
-    re_path(r'.*', views.index),
+    # 全局路由匹配，会引发额外请求的 bug
+    # re_path(r'.*', views.index),
 ]
