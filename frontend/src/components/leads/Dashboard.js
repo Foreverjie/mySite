@@ -6,8 +6,16 @@ import Message from '../common/Message'
 export default function DashBoard() {
   return (
     <Fragment>
-      <Form />
-      <Leads />
+      <div
+        style={{
+          background: '#fff',
+          padding: 24,
+          minHeight: 380
+        }}
+      >
+        <Form />
+        <Leads />
+      </div>
     </Fragment>
   )
 }
