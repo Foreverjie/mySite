@@ -5,6 +5,7 @@ import Dashboard from '../leads/Dashboard'
 import Article from '../articles/Article'
 import Login from '../accounts/Login'
 import Register from '../accounts/Register'
+import Editor from '../articles/Editor'
 import PrivateRoute from '../common/PrivateRoute'
 
 const { Content } = Layout
@@ -23,6 +24,9 @@ export class MyContent extends Component {
           </Route>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/edit">
+            <Editor />
           </Route>
           <PrivateRoute path="/" component={Article} />
         </Switch>

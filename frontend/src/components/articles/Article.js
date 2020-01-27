@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { List, Avatar, Icon, Row, Col, Button } from 'antd'
 import Editor from './Editor'
 
@@ -95,8 +96,10 @@ export class Article extends Component {
               <Row type="flex" justify="center" gutter={[16, 16]}>
                 <Col>
                   <Button type="primary" size="large">
-                    <Icon type="edit" />
-                    写文章
+                    <Link to="/edit">
+                      <Icon type="edit" />
+                      写文章
+                    </Link>
                   </Button>
                 </Col>
                 <Col>

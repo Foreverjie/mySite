@@ -55,7 +55,6 @@ export class MyHeader extends Component {
           backgroundColor: 'white'
         }}
       >
-        {/* {isAuthenticated ? userLink : guestLink} */}
         <Row>
           <Col span={6}></Col>
           <Col span={6}>
