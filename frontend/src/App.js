@@ -14,7 +14,8 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 class App extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props)
     store.dispatch(loadUser())
   }
 
