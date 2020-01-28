@@ -2,19 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { List, Avatar, Icon, Row, Col, Button } from 'antd'
 import Editor from './Editor'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-const listData = []
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'http://ant.design',
-    title: `ant design part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
-  })
-}
+import store from '../../store'
+import { getArticles } from '../../actions/articles'
 
 const IconText = ({ type, text }) => (
   <span>
@@ -24,6 +16,15 @@ const IconText = ({ type, text }) => (
 )
 
 export class Article extends Component {
+  constructor(props) {
+    super(props)
+    props.getArticles()
+  }
+
+  static propTypes = {
+    articles: PropTypes.array.isRequired
+  }
+
   render() {
     return (
       <div>
@@ -44,9 +45,9 @@ export class Article extends Component {
                   onChange: page => {
                     console.log(page)
                   },
-                  pageSize: 5
+                  pageSize: 10
                 }}
-                dataSource={listData}
+                dataSource={this.props.articles}
                 renderItem={item => (
                   <List.Item
                     key={item.title}
@@ -76,11 +77,13 @@ export class Article extends Component {
                     }
                   >
                     <List.Item.Meta
-                      avatar={<Avatar src={item.avatar} />}
-                      title={<a href={item.href}>{item.title}</a>}
+                      avatar={
+                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                      }
+                      title={<a href="#">{item.title}</a>}
                       description={item.description}
                     />
-                    {item.content}
+                    {item.article}
                   </List.Item>
                 )}
               />
@@ -123,4 +126,8 @@ export class Article extends Component {
   }
 }
 
-export default Article
+const mapStateToProps = state => ({
+  articles: state.articles.articles
+})
+
+export default connect(mapStateToProps, { getArticles })(Article)

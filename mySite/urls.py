@@ -20,6 +20,7 @@ from frontend import views
 urlpatterns = [
     path('', include('frontend.urls')),
     path('', include('leads.urls')),
+    path('', include('articles.urls')),
     path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
 
