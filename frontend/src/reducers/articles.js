@@ -1,8 +1,8 @@
-import { GET_ARTICLES, ADD_ARTICLE } from '../actions/types.js'
+import { GET_ARTICLES, ADD_ARTICLE, GET_ARTICLE } from '../actions/types.js'
 
 const initialState = {
   articles: [],
-  author: ''
+  articleDetail: null
 }
 
 export default function(state = initialState, action) {
@@ -16,6 +16,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         articles: [...state.articles, action.payload]
+      }
+    case GET_ARTICLE:
+      return {
+        ...state,
+        articleDetail: action.payload
       }
     default:
       return state

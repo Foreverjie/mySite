@@ -78,12 +78,24 @@ export class Article extends Component {
                       avatar={
                         <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                       }
-                      title={<a href="#">{item.title}</a>}
+                      title={
+                        <Link to={`/articles/${item.id}`}>{item.title}</Link>
+                      }
                       // description={Date.parse(item.created_at)}
                       description={
-                        item.owner.username +
-                        '-' +
-                        new Date(Date.parse(item.created_at)).toLocaleString()
+                        <div>
+                          <Link to={`/users/${item.owner.id}`}>
+                            {item.owner.username}
+                          </Link>
+                          <span>
+                            {'  ' +
+                              new Date(
+                                Date.parse(item.created_at)
+                              ).toLocaleString()}
+                          </span>
+                        </div>
+
+                        //
                       }
                     />
                     {item.description}

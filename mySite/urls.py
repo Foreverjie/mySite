@@ -25,5 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # 全局路由匹配，会引发额外请求的 bug
-    # re_path(r'.*', views.index),
+    re_path(r'.*', views.index),
 ]

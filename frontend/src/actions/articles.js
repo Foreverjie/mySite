@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_ARTICLES, ADD_ARTICLE } from './types'
+import { GET_ARTICLES, ADD_ARTICLE, GET_ARTICLE } from './types'
 import { returnErrors } from './message'
 import { tokenConfig } from './auth'
 
@@ -34,6 +34,21 @@ export const addArticle = ({ title, description, article }) => (
     .then(res => {
       dispatch({
         type: ADD_ARTICLE,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      dispatch(returnErrors(err))
+    })
+}
+
+// Get Article By Id
+export const getArticle = id => dispatch => {
+  axios
+    .get(`/api/articles/${id}/`)
+    .then(res => {
+      dispatch({
+        type: GET_ARTICLE,
         payload: res.data
       })
     })

@@ -3,6 +3,7 @@ import { Layout, Row, Col, Icon, Button } from 'antd'
 import { Switch, Route } from 'react-router-dom'
 import Dashboard from '../leads/Dashboard'
 import Article from '../articles/Article'
+import ArticleDetail from '../articles/ArticleDetail'
 import Login from '../accounts/Login'
 import Register from '../accounts/Register'
 import Editor from '../articles/Editor'
@@ -28,6 +29,7 @@ export class MyContent extends Component {
           <Route path="/edit">
             <Editor />
           </Route>
+          <Route path="/articles/:id" component={ArticleDetail} />
           <PrivateRoute path="/" component={Article} />
         </Switch>
       </Content>
