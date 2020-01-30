@@ -1,7 +1,8 @@
-import { GET_ARTICLES, ADD_ARTICLE } from '../actions/types.js'
+import { GET_ARTICLES, ADD_ARTICLE, GET_AUTHOR } from '../actions/types.js'
 
 const initialState = {
-  articles: []
+  articles: [],
+  author: ''
 }
 
 export default function(state = initialState, action) {

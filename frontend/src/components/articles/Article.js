@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { List, Avatar, Icon, Row, Col, Button } from 'antd'
-import Editor from './Editor'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-
-import store from '../../store'
 import { getArticles } from '../../actions/articles'
 
 const IconText = ({ type, text }) => (
@@ -22,7 +19,8 @@ export class Article extends Component {
   }
 
   static propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.array.isRequired,
+    getArticles: PropTypes.func.isRequired
   }
 
   render() {
@@ -42,9 +40,9 @@ export class Article extends Component {
                 itemLayout="vertical"
                 size="large"
                 pagination={{
-                  onChange: page => {
-                    console.log(page)
-                  },
+                  // onChange: page => {
+                  //   console.log(page)
+                  // },
                   pageSize: 10
                 }}
                 dataSource={this.props.articles}
