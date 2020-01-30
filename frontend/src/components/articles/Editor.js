@@ -113,7 +113,7 @@ A component by [Espen Hovlandsdal](https://espen.codes/)`
                 onChange={this.onChange}
               />
               <TextArea
-                name="text"
+                name="article"
                 placeholder="Here goes your article..."
                 value={this.state.article}
                 rows={50}
