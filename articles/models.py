@@ -8,4 +8,4 @@ class Article(models.Model):
     article = models.TextField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(
-        User, related_name="article", on_delete=models.CASCADE, null=True)
+        User, related_name="article", on_delete=models.CASCADE)

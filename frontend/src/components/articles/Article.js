@@ -80,9 +80,11 @@ export class Article extends Component {
                       }
                       title={<a href="#">{item.title}</a>}
                       // description={Date.parse(item.created_at)}
-                      description={new Date(
-                        Date.parse(item.created_at)
-                      ).toLocaleString()}
+                      description={
+                        item.owner.username +
+                        '-' +
+                        new Date(Date.parse(item.created_at)).toLocaleString()
+                      }
                     />
                     {item.description}
                   </List.Item>
