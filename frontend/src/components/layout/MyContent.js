@@ -14,7 +14,7 @@ const { Content } = Layout
 export class MyContent extends Component {
   render() {
     return (
-      <Content style={{ padding: '0 50px', marginTop: 80 }}>
+      <Content style={{ padding: '0 360px', marginTop: 80 }}>
         <Switch>
           <PrivateRoute path="/leads" component={Dashboard} />
           <Route path="/explore">

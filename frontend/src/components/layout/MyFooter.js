@@ -7,7 +7,11 @@ export class MyFooter extends Component {
   render() {
     return (
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2018 Created by Ant UED
+        <div class="copyright">
+          <a href="http://www.beian.miit.gov.cn" target="_blank">
+            粤ICP备18087217
+          </a>
+        </div>
       </Footer>
     )
   }

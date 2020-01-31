@@ -97,7 +97,7 @@ export class Article extends Component {
                         //
                       }
                     />
-                    {item.description}
+                    <div style={{ minHeight: 60 }}>{item.description}</div>
                   </List.Item>
                 )}
               />
