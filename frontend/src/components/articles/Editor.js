@@ -68,7 +68,6 @@ A component by [Espen Hovlandsdal](https://espen.codes/)`
   }
 
   onSubmit = () => {
-    console.log(this.state)
     const { title, description, article } = this.state
     const newArticle = {
       title,

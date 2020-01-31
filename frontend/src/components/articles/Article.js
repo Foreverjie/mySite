@@ -13,9 +13,8 @@ const IconText = ({ type, text }) => (
 )
 
 export class Article extends Component {
-  constructor(props) {
-    super(props)
-    props.getArticles()
+  componentDidMount() {
+    this.props.getArticles()
   }
 
   static propTypes = {

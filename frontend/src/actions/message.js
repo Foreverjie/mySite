@@ -7,3 +7,11 @@ export const returnErrors = err => dispatch => {
     success: false
   })
 }
+
+export const returnSuccess = msg => dispatch => {
+  dispatch({
+    type: GET_SUCCESS,
+    payload: msg,
+    success: true
+  })
+}
