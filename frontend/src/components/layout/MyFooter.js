@@ -7,7 +7,7 @@ export class MyFooter extends Component {
   render() {
     return (
       <Footer style={{ textAlign: 'center' }}>
-        <div class="copyright">
+        <div className="copyright">
           <a href="http://www.beian.miit.gov.cn" target="_blank">
             粤ICP备18087217
           </a>
