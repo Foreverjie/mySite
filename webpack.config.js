@@ -1,10 +1,10 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const path = require('path')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-// const webpack = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
   entry: ['babel-polyfill', './frontend/src/App.js'],
@@ -17,18 +17,19 @@ module.exports = {
   // vendor: [],
   plugins: [
     new BundleAnalyzerPlugin({ analyzerPort: 8001 }),
-    new AntdDayjsWebpackPlugin()
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(
-    //     __dirname,
-    //     './frontend/static/frontend/dll',
-    //     'mainfist.json'
-    //   )
-    // })
-    // new MiniCssExtractPlugin({
-    //   //提取css
-    //   filename: 'css/main.css'
-    // })
+    new AntdDayjsWebpackPlugin(),
+    new webpack.DllReferencePlugin({
+      manifest: require(path.resolve(
+        __dirname,
+        './frontend/static/frontend',
+        'manifest.json'
+      )),
+      context: __dirname
+    }),
+    new MiniCssExtractPlugin({
+      //提取css
+      filename: 'main.css'
+    })
   ],
   optimization: {
     minimizer: [
@@ -39,19 +40,19 @@ module.exports = {
         sourceMap: true
       }),
       new OptimizeCSSAssetsPlugin() //压缩css
-    ]
-    // splitChunks: {
-    //   cacheGroups: {
-    //     vendors: {
-    //       //node_modules里的代码
-    //       test: /[\\/]node_modules[\\/]/,
-    //       chunks: 'initial',
-    //       name: 'vendors', //chunks name
-    //       priority: 10, //优先级
-    //       enforce: true
-    //     }
-    //   }
-    // }
+    ],
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          //node_modules里的代码
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'initial',
+          name: 'vendors', //chunks name
+          priority: 10, //优先级
+          enforce: true
+        }
+      }
+    }
   },
   module: {
     rules: [
@@ -68,7 +69,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
         // loader: 'style-loader!css-loader'
       }
     ]
