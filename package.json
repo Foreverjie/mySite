@@ -38,7 +38,7 @@
   "dependencies": {
     "antd": "^3.26.6",
     "antd-dayjs-webpack-plugin": "0.0.8",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "css-loader": "^3.4.1",
     "react-alert": "^6.0.0",
